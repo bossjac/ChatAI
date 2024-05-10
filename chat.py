@@ -28,9 +28,10 @@ if user_input:
                 </audio>
             """ % audio_url, unsafe_allow_html=True)
 
-def on_keydown(key):
-    if key == "Enter":
+def handle_enter(event):
+    if event.key == "Enter":
         st.session_state.enter_pressed = True
 
+# Register event handler
 st.write("Press Enter to generate audio:")
-st.add_key_hook(on_keydown)
+st.script_request_queue.RerunData.insert(0, {"on_key_down": handle_enter})
