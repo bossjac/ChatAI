@@ -1,5 +1,8 @@
 import streamlit as st
 from gradio_client import Client
+import requests
+from io import BytesIO
+from PIL import Image
 
 # Initialize the Gradio client
 client = Client("KingNish/JARVIS")
@@ -14,6 +17,10 @@ if st.button("Send"):
         with st.spinner("Thinking..."):
             # Call the JARVIS model
             result = client.predict(prompt=user_input, api_name="/translate")
-            st.write("JARVIS:", result)
+            # Prepend the URL
+            audio_url = "https://kingnish-jarvis.hf.space/file=" + result
+            # Display the audio
+            audio_response = requests.get(audio_url)
+            st.audio(BytesIO(audio_response.content))
     else:
         st.warning("Please enter something.")
