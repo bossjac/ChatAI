@@ -5,4 +5,3 @@ torchaudio
 gradio_client
 requests
 pillow
-google-cloud-speech
