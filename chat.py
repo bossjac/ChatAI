@@ -2,7 +2,7 @@ import streamlit as st
 from transformers import pipeline
 
 # Load the model
-model = pipeline("text-chat", model="Orenguteng/Llama-3-8B-Lexi-Uncensored")
+model = pipeline("text-to-text-generation", model="Orenguteng/Llama-3-8B-Lexi-Uncensored")
 
 # Define a function to interact with the model
 def chat_with_model(user_input):
@@ -21,4 +21,3 @@ if st.button("Send"):
             st.write("Llama-3-8B-Lexi-Uncensored:", bot_response)
     else:
         st.warning("Please enter something.")
-
