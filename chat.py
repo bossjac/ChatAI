@@ -1,13 +1,16 @@
 import streamlit as st
-from transformers import pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Load the model
-model = pipeline("text-to-text-generation", model="Orenguteng/Llama-3-8B-Lexi-Uncensored")
+# Load the model and tokenizer
+model_name = "Orenguteng/Llama-3-8B-Lexi-Uncensored"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
 
 # Define a function to interact with the model
 def chat_with_model(user_input):
-    response = model(user_input)
-    return response[0]['generated_text']
+    input_ids = tokenizer.encode(user_input, return_tensors="pt")
+    output = model.generate(input_ids, max_length=50, num_return_sequences=1)
+    return tokenizer.decode(output[0], skip_special_tokens=True)
 
 # Streamlit app
 st.title("Interactive Chat with Llama-3-8B-Lexi-Uncensored")
