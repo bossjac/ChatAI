@@ -24,6 +24,9 @@ if st.button("Send"):
             # Process the audio to remove "slash s" phrase
             audio_content = audio_response.content.replace(b"slash s", b"")
             
+            # Display the text string
+            st.text("Generated Text: " + result)
+            # Display the audio
             st.audio(BytesIO(audio_content), format='audio/wav', autoplay=True)
     else:
         st.warning("Please enter something.")
