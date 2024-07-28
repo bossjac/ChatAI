@@ -1,7 +1,0 @@
-transformers
-torch
-torchvision
-torchaudio
-gradio_client
-requests
-pillow
