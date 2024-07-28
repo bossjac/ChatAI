@@ -1,2 +1,0 @@
-# ChatAI
-Just Be Happy
